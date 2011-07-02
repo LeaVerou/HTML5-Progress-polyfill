@@ -128,7 +128,10 @@ var self = window.ProgressPolyfill = {
 	},
 	
 	redraw: function redraw(progress) {
-		if(!attrsAsProps) {
+		if(self.isInited(progress)) {
+			self.init(progress);
+		}
+		else if(!attrsAsProps) {
 			progress.setAttribute('aria-valuemax', parseFloat(progress.getAttribute('max')) || 1);
 			
 			if(progress.hasAttribute('value')) {
@@ -144,8 +147,12 @@ var self = window.ProgressPolyfill = {
 		}
 	},
 	
+	isInited: function(progress) {
+		return rogress.getAttribute('role') === 'progressbar';
+	},
+	
 	init: function (progress) {
-		if(progress.getAttribute('role') === 'progressbar') {
+		if(self.isInited(progress)) {
 			return; // Already init-ed
 		}
 		
@@ -166,15 +173,6 @@ var self = window.ProgressPolyfill = {
 			});
 		}
 		
-		progress.addEventListener 
-			&& progress.addEventListener('DOMAttrModified', function(evt) {
-				var attribute = evt.attrName;
-				
-				if(attribute == 'max' || attribute == 'value') {
-					self.redraw(this);
-				}
-			}, false);
-		
 		self.redraw(progress);
 	},
 	
@@ -189,13 +187,22 @@ for(var i=self.progresses.length-1; i>=0; i--) {
 }
 
 // Take care of future ones too, if supported
-document.addEventListener 
-	&& document.addEventListener('DOMNodeInserted', function(evt) {
+if(document.addEventListener) {
+	document.addEventListener('DOMAttrModified', function(evt) {
+		var node = evt.target, attribute = evt.attrName;
+		
+		if(node.nodeName === 'PROGRESS' && (attribute === 'max' || attribute === 'value')) {
+			self.redraw(node);
+		}
+	}, false);
+	
+	document.addEventListener('DOMNodeInserted', function(evt) {
 		var node = evt.target;
 		
 		if(node.nodeName === 'PROGRESS') {
 			self.init(node);
 		}
 	}, false);
-	
+}
+
 })();
