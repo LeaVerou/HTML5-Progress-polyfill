@@ -21,7 +21,7 @@ var defineProperty = Object.defineProperty,
 	supportsEtters = true;
 	
 if (!defineProperty) {
-	if ('__defineSetter__' in progress) {
+	if ('__defineSetter__' in document.body) {
 		defineProperty = function(o, property, etters) {
 			o.__defineGetter__(property, etters.get);
 			
