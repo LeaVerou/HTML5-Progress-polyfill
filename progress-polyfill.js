@@ -148,7 +148,7 @@ var self = window.ProgressPolyfill = {
 	},
 	
 	isInited: function(progress) {
-		return rogress.getAttribute('role') === 'progressbar';
+		return progress.getAttribute('role') === 'progressbar';
 	},
 	
 	init: function (progress) {
