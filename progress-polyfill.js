@@ -123,7 +123,7 @@ var self = window.ProgressPolyfill = {
 			get: function(){
 				var label = this.parentNode;
 				
-				while(label && label.nodeName !== 'LABEL') {
+				while(label && !/^label$/i.test(label.nodeName)) {
 					label = label.parentNode;
 				}
 				
@@ -206,7 +206,7 @@ if(document.addEventListener) {
 	document.addEventListener('DOMAttrModified', function(evt) {
 		var node = evt.target, attribute = evt.attrName;
 		
-		if(node.nodeName === 'PROGRESS' && (attribute === 'max' || attribute === 'value')) {
+		if(/^progress$/i.test(node.nodeName) && (attribute === 'max' || attribute === 'value')) {
 			self.redraw(node);
 		}
 	}, false);
@@ -214,7 +214,7 @@ if(document.addEventListener) {
 	document.addEventListener('DOMNodeInserted', function(evt) {
 		var node = evt.target;
 		
-		if(node.nodeName === 'PROGRESS') {
+		if(/^progress$/i.test(node.nodeName)) {
 			self.init(node);
 		}
 	}, false);
