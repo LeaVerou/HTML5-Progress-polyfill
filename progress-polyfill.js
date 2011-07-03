@@ -1,7 +1,7 @@
 /*
  * <progress> polyfill
  * Don't forget to also include progress-polyfill.css!
- * @author Lea Verou
+ * @author Lea Verou http://leaverou.me
  */
  
 (function(){
@@ -17,10 +17,25 @@ if('position' in document.createElement('progress')) {
 
 // Smoothen out differences between Object.defineProperty
 // and __defineGetter__/__defineSetter__
-var defineProperty = Object.defineProperty,
-	supportsEtters = true;
-	
-if (!defineProperty) {
+var defineProperty, supportsEtters = true;
+
+if(Object.defineProperty) {
+	// Changed to fix issue #3 https://github.com/LeaVerou/HTML5-Progress-polyfill/issues/3
+	defineProperty = function(o, property, etters) {
+		etters.enumerable = true;
+		etters.configurable = true;
+		
+		try {
+			Object.defineProperty(o, property, etters);
+		} catch(e) {
+			if(e.number === -0x7FF5EC54) {
+				etters.enumerable = false;
+				Object.defineProperty(o, property, etters);
+			}
+		}
+	}
+}
+else {
 	if ('__defineSetter__' in document.body) {
 		defineProperty = function(o, property, etters) {
 			o.__defineGetter__(property, etters.get);
