@@ -143,7 +143,7 @@ var self = window.ProgressPolyfill = {
 	},
 	
 	redraw: function redraw(progress) {
-		if(self.isInited(progress)) {
+		if(!self.isInited(progress)) {
 			self.init(progress);
 		}
 		else if(!attrsAsProps) {
