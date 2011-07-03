@@ -33,7 +33,7 @@ if (!defineProperty) {
 	else {
 		// Fallback to regular properties if getters/setters are not supported
 		defineProperty = function(o, property, etters) {
-				o[property] = etters.get();
+				o[property] = etters.get.call(o);
 			},
 			supportsEtters = false;
 	}
