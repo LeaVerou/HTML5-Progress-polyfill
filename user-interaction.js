@@ -1,3 +1,8 @@
+/*
+ * Interaction demos for the <progress> polyfill
+ * Demonstrates setting the progress value through Javascript
+ * @author Espen Hovlandsdal http://rexxars.com
+ */
 (function(d) {
     var bind = function(el, event, fn) {
         if (el.addEventListener) {
