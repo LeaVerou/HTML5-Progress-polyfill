@@ -24,7 +24,7 @@
             progress += inc;
             el.value = progress;
 
-            perc[i].innerHTML = progress;
+            perc.innerHTML = progress;
 
             if (progress == to) {
                 return clearInterval(timer);
