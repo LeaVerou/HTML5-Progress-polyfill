@@ -40,6 +40,19 @@
 		</li>
 	</ul>
 	
+	<h2>Dynamic demo</h2>
+	<ul>
+		<li id="dynamicProgress">
+			<label>Progress: <span class="percentage">0</span>%
+				<progress value="0" max="100"></progress>
+			</label>
+		</li>
+	</ul>
+	<p>
+	   <button id="animateFully">Animate to 100%</button>
+	   <button id="animateToUserInput">Animate to...</button>
+	</p>
+	
 	<h2>Features</h2>
 	<ul>
 		<li>Accessible (WAI-ARIA-enabled)</li>
@@ -70,5 +83,6 @@
 	
 	<script src="progress-polyfill.js"></script>
 	<script src="tests.js"></script>
+	<script src="user-interaction.js"></script>
 </body>
 </html>
