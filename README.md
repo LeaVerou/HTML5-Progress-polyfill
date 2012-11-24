@@ -1,1 +1,1 @@
-[Demo](http://LeaVerou.github.com/HTML5-Progress-polyfill/index-eng.html)
+[Demo](http://leaverou.me/polyfills/progress/)
