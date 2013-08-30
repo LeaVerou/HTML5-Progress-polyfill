@@ -1,1 +1,1 @@
-[Demo](http://leaverou.me/polyfills/progress/)
+[Demo](http://lea.verou.me/polyfills/progress/)
