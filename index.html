@@ -69,7 +69,11 @@
 	<p>Supporting Safari 5 was impossible, as it completely drops the progress tags and gives you an error</p>
 	
 	<h2>How to use</h2>
-	<p>Just add <code>progress-polyfill.css</code> in the head section and <code>progress-polyfill.js</code> near the body closing tag.
+	<ul>
+		<li>In the head section, add <code>progress-polyfill.css</code></li>
+		<li>Also in the head section, add the Javascript code: <code>document.createElement("progress");</code></li>
+		<li>Near the body closing tag, add <code>progress-polyfill.js</code>.</li>
+	</ul>
 	
 	<h2>Unit tests</h2>
 	<p style="display:none">
